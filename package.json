@@ -1,0 +1,12 @@
+{
+  "name": "intecapreact",
+  "version": "1.0.0",
+  "description": "Curso de React en Intecap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "base-start": "node index.js"
+  },
+  "author": "John Espitia",
+  "license": "ISC"
+}
