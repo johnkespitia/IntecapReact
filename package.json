@@ -9,5 +9,8 @@
     "watch-start": "node --watch index.js"
   },
   "author": "John Espitia",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.4.9"
+  }
 }
