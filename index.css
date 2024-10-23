@@ -1,0 +1,12 @@
+#root {
+    background-color: aqua;
+}
+.box {
+    width: 500px;
+    background: lightgreen;
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: left;
+  }
