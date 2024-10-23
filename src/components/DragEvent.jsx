@@ -2,10 +2,9 @@ import React from "react";
 
 export const DragEvent = () => {
 
-
-    
 	return (
 		<>
+			<h1>Eventos de arrastre</h1>
 			<div
 				draggable={true}
 				onDragStart={(e) => console.log("onDragStart")}

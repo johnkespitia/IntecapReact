@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { DragEvent } from "./src/components/DragEvent";
+import "./index.css";
+import { Menu } from "./src/components/Menu";
+import { Slider } from "./src/components/Slider";
+import { Form } from "./src/components/Form";
 
 // export const App = () => {
 // 	return (
@@ -16,6 +19,8 @@ import { DragEvent } from "./src/components/DragEvent";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <DragEvent />
+    <Menu />
+    <Slider />
+    <Form />
   </React.StrictMode>
 )

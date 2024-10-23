@@ -1,0 +1,144 @@
+/* Estilos para el tema oscuro */
+
+/* Fondo */
+body {
+    background-color: #151320; /* Fondo oscuro */
+    font-family: Arial, sans-serif;
+    color: #ffffff; /* Blanco */
+  }
+  
+  /* Colores */
+  .primary-color {
+    color: #ffffff; /* Blanco */
+  }
+  
+  .secondary-color {
+    color: #cccccc; /* Gris claro */
+  }
+  
+  .accent-color {
+    color: #66d9ef; /* Azul claro */
+  }
+  
+  .background-color {
+    background-color: #333333; /* Fondo oscuro */
+  }
+  
+  /* Textos */
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff; /* Blanco */
+  }
+  
+  p, span, a {
+    color: #cccccc; /* Gris claro */
+  }
+  
+  a:hover {
+    color: #66d9ef; /* Azul claro */
+  }
+  
+  /* Botones */
+  button, .btn {
+    background-color: #22212C; /* Fondo oscuro */
+    color: #ffffff; /* Blanco */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    
+  }
+  
+  button:hover, .btn:hover {
+    background-color: #302C45; /* Fondo oscuro claro */
+  }
+  
+  /* Otros estilos */
+  hr {
+    border-color: #666666; /* Gris oscuro */
+  }
+  
+  input, textarea, select {
+    background-color: #333333; /* Fondo oscuro */
+    color: #ffffff; /* Blanco */
+    padding: 10px;
+    border: none;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    background-color: #444444; /* Fondo oscuro claro */
+  }
+
+  ::selection {
+    background-color: #7e74af; /* MOrado claro */
+    color: #ffffff; /* Blanco */
+  }
+
+  .menu-principal {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .lista-menu{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+  .item-menu a:hover{
+    color: #7e74af;
+    cursor: pointer;
+  }
+
+  .button-menu{
+    display: flex;
+
+  }
+  
+  .contact-form h2 {
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    color: #fff;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+  }
+  
+  .form-group input:focus, .form-group textarea:focus {
+    background-color: #555;
+  }
+  
+  button[type="submit"] {
+    background-color: #66d9ef;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #77e0f5;
+  }
