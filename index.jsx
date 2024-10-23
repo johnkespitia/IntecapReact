@@ -1,5 +1,10 @@
 import React from 'react'
-function MyApp(){
-    return <h1>Mi primer React Component</h1>
+import Menu from './Componentes/Menu'
+import HeroComponent from './Componentes/Hero'
+function App(){
+    return <div>
+        <Menu />
+        <HeroComponent />
+    </div>
 }
-export default MyApp
+export default App
