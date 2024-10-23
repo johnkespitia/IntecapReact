@@ -5,6 +5,10 @@ body {
     background-color: #151320; /* Fondo oscuro */
     font-family: Arial, sans-serif;
     color: #ffffff; /* Blanco */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
   }
   
   /* Colores */
@@ -101,6 +105,42 @@ body {
     display: flex;
 
   }
+
+  /* Features Section */
+  .slider {
+    width: 100%;
+    height: 600px;
+  }
+  
+  .item {
+    background-image:url(https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+  .container-form{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    margin: 40px;
+
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
   
   .contact-form h2 {
     color: #fff;
@@ -116,29 +156,19 @@ body {
     display: block;
     margin-bottom: 10px;
   }
-  
+
   .form-group input, .form-group textarea {
-    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 5px;
     background-color: #444;
     color: #fff;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   
   .form-group input:focus, .form-group textarea:focus {
     background-color: #555;
   }
   
-  button[type="submit"] {
-    background-color: #66d9ef;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #77e0f5;
-  }
