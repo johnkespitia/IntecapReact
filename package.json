@@ -3,14 +3,25 @@
     "version": "1.0.0",
     "description": "Curso de React en Intecap",
     "main": "index.js",
+    "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "base-start": "node index.js",
-        "watch-start": "node --watch index.js"
+        "watch-start": "node --watch index.js",
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
     },
     "author": "Oskr Nivia",
     "license": "ISC",
     "devDependencies": {
+        "@types/react": "^18.3.11",
+        "@types/react-dom": "^18.3.1",
         "vite": "^5.4.9"
+    },
+    "dependencies": {
+        "@vitejs/plugin-react": "^4.3.3",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
     }
 }
