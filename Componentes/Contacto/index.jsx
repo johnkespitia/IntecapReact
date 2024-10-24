@@ -1,6 +1,7 @@
 import React from 'react'
-const ContactoFormulario = () => {
+const ContactoFormulario = (props) => {
     return <form action='' method='post'>
+        <h3>Hola {props.saludo.msj}</h3>
         <label>Nombre: </label>
         <input name='nombre' type='text' placeholder='Como te llamas?' />
         <br />

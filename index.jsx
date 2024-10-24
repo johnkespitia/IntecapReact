@@ -8,14 +8,19 @@ import './index.css';
 
 function MyApp(){
     return  <div>
-                <Menu/>            
+                <Menu name="Oskr" darkMode={false} className="red"
+                    style={{
+                        backgroundColor: "#CCC54D"
+                    }}/>            
                 <div className='box'>
                     <div className='image-container'>                                        
                         <HeroComponent/>                    
                         <BrandComponent/>
                     </div>
                 </div>
-                <ContactoFormulario />
+                <ContactoFormulario saludo={{
+                    msj: "Bienvenido!!!"
+                }} />
             </div>
 }
 
