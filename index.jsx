@@ -5,10 +5,14 @@ import ContactoFormulario from './Componentes/Contacto'
 import MenuImg from './Componentes/Menu/create'
 function App(){
     return <div>
-        <Menu />
+        <Menu name="John Espitia" darkMode={false} className="red" style={{
+            backgroundColor: "#CCC54D"
+        }} />
         <HeroComponent />
         <MenuImg />
-        <ContactoFormulario />
+        <ContactoFormulario saludo={{
+            saludo:"Bienvenido!",
+            nombre:"John Espitia"}}  />
     </div>
 }
 export default App
