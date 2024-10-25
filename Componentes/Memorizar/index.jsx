@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import './index.css'
 const MemorizarJuego = () => {
     const [cartas, setCartas] = useState([
         {
@@ -32,26 +33,51 @@ const MemorizarJuego = () => {
         return cartasSin
     }
 
+useEffect(()=>{
+    console.log("giro cartas")
+},[cartas])
+useEffect(()=>{
+    if(segundaCarta){
+        console.log("giro carta 2")
+        const pareja = primeraCarta.value == segundaCarta.value
+        if(!pareja){
+            setTimeout(()=>{
+                setGiro(primeraCarta,false);
+                setGiro(segundaCarta,false);
+                setPrimeraCarta(null)
+                setSegundaCarta(null)
+                setDisabled(false)
+            }, 1000)
+            
+        }else{
+            setDisabled(false)
+        }
+        setTurno(turno+1)
+    }
+},[segundaCarta])
+
+    const setGiro = (carta, giro) => {
+        let cartaGiro = cartas.findIndex((card)=> card.id === carta.id )
+        let tempCartas = cartas
+        tempCartas[cartaGiro].giro=giro
+        console.log(tempCartas)
+        setCartas(tempCartas)
+    }
+
     const handleClick = (carta) => {
+        if(carta.giro || disabled){
+            return
+        }
         if(!primeraCarta){
             setPrimeraCarta(carta)
+            setGiro(carta, true)
+            console.log("primera")
             return
         }
         setSegundaCarta(carta)
-        const pareja = primeraCarta.value == segundaCarta.value
-
-        if(pareja){
-            let cartasCopia = cartas
-            let primera = cartasCopia.findIndex((card)=> card.id === primeraCarta.id )
-            let segunda = cartasCopia.findIndex((card)=> card.id === segundaCarta.id )
-            cartasCopia[primera].giro=true
-            cartasCopia[segunda].giro=true
-            setCartas(cartasCopia)
-        }else{
-            setPrimeraCarta(null)
-            setSegundaCarta(null)
-        }
-        setTurno(turno+1)
+        setGiro(carta, true)
+        console.log("segunda")
+        setDisabled(true)
     }
 
     useEffect(()=>{
@@ -68,11 +94,11 @@ const MemorizarJuego = () => {
         }}>
             {cartas.map((carta, idx) => {
                 return <div key={carta.id}
-                    className={carta.giro?'flip':''}
+                    className="flip"
                     onClick={()=> handleClick(carta)}
                 >
-                    <div className="frente">{carta.value}</div>
-                    <div className="tapa"></div>
+                    {carta.giro && <div className="frente">{carta.value}</div>}
+                   {!carta.giro && <div className="tapa"></div>}
                 </div>
             })}
         </div>

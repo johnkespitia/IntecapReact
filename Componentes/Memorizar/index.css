@@ -1,5 +1,25 @@
 .flip{
-    
+    width: 200px;
+    height: 300px;
+    box-shadow: #000000a6 11px 9px 18px;
+    border-radius: 5px;
+    margin: 2rem;
+    cursor: pointer;
 }
-.frente{}
-.tapa{}
+.frente{
+    background-color: #fefef7;
+    width: 95%;
+    height: 95%;
+    border-radius: 5px;
+    margin: auto;
+    border: solid #857e20 2px;
+}
+.tapa{
+    background-color: #CCC111;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.tapa:hover{
+    background-color: #857e20;
+}
