@@ -1,12 +1,18 @@
 import React from 'react'
 import Menu from './Componentes/Menu'
 import HeroComponent from './Componentes/Hero'
-import FormComponent from './Componentes/Formulario'
+import ContactoFormulario from './Componentes/Contacto'
+import MenuImg from './Componentes/Menu/create'
 function App(){
     return <div>
-        <Menu />
+        <Menu name="John Espitia" darkMode={false} className="red" style={{
+            backgroundColor: "#CCC54D"
+        }} />
         <HeroComponent />
-        <FormComponent/>
+        <MenuImg />
+        <ContactoFormulario saludo={{
+            saludo:"Bienvenido!",
+            nombre:"John Espitia"}}  />
     </div>
 }
 export default App
