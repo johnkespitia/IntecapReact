@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 const ContactoFormulario = (props) => {
     const [formData, setFormData] = useState({})
@@ -20,6 +20,16 @@ const ContactoFormulario = (props) => {
         //setFormData(formProcessDest)
     }
 
+    useEffect(()=>{
+        console.log("evento de actualización")
+    })
+    useEffect(()=>{
+        console.log("evento de actualización 2")
+    },[])
+    useEffect(()=>{
+        console.log("evento de actualización message")
+    },[formData, message])
+
     const handleSubmit = (evt) => {
         evt.preventDefault()
         setMessage(<p>Nombre: {formData.nombre}
@@ -29,6 +39,7 @@ const ContactoFormulario = (props) => {
     }
 
     return <form action='' onSubmit={handleSubmit} method='post'>
+        {formData?.nombre}
         <h3>{props.saludo.saludo} <span>{props.saludo.nombre}</span></h3>
         <h3>{`${props.saludo.saludo} ${props.saludo.nombre}`} </h3>
         <label>Nombre: </label>
