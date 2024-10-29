@@ -12,7 +12,7 @@ class Menu extends React.Component{
     componentWillMount = ()=>{
         console.log("---------------- SERA MONTADO -----------------")
     }
-
+//render
     componentDidMount = () => {
         console.log("---------------- SE MONTÓ -----------------")
     }
@@ -25,7 +25,7 @@ class Menu extends React.Component{
         console.log("STATE actual", this.state)
         return (futuroState.nombre.length>3)
     }
-    
+    //render 2 (updates)
     componentDidUpdate = (prevProps, prevState) => {
         console.log("---------------- SE ACTUALIZÓ -----------------")
         console.log("PROPS PREVIO", prevProps)
@@ -39,6 +39,11 @@ class Menu extends React.Component{
 
     componentWillUnmount = () => {
         console.log("---------------- SE VA A DESMONTAR -----------------")
+    }
+//destroy
+
+    componentDidCatch = (err) => {
+        
     }
 
     handleInput = (evt) => {
