@@ -9,12 +9,12 @@ const mazo = [
     },
     {
         id: 2,
-        value: "2 corazones",
+        value: "1 corazones",
         giro: false,
     },
     {
         id: 3,
-        value: "1 corazones",
+        value: "2 corazones",
         giro: false,
     },
     {
@@ -42,7 +42,127 @@ const mazo = [
         value: "4 corazones",
         giro: false,
     },
-] 
+    {
+        id: 9,
+        value: "5 corazones",
+        giro: false,
+    },
+    {
+        id: 10,
+        value: "5 corazones",
+        giro: false,
+    },
+    {
+        id: 11,
+        value: "6 corazones",
+        giro: false,
+    },
+    {
+        id: 12,
+        value: "6 corazones",
+        giro: false,
+    },
+    {
+        id: 13,
+        value: "7 corazones",
+        giro: false,
+    },
+    {
+        id: 14,
+        value: "7 corazones",
+        giro: false,
+    },
+    {
+        id: 15,
+        value: "8 corazones",
+        giro: false,
+    },
+    {
+        id: 16,
+        value: "8 corazones",
+        giro: false,
+    },
+    {
+        id: 17,
+        value: "9 corazones",
+        giro: false,
+    },
+    {
+        id: 18,
+        value: "9 corazones",
+        giro: false,
+    },
+    {
+        id: 19,
+        value: "10 corazones",
+        giro: false,
+    },
+    {
+        id: 20,
+        value: "10 corazones",
+        giro: false,
+    },
+    {
+        id: 21,
+        value: "11 corazones",
+        giro: false,
+    },
+    {
+        id: 22,
+        value: "11 corazones",
+        giro: false,
+    },
+    {
+        id: 23,
+        value: "12 corazones",
+        giro: false,
+    },
+    {
+        id: 24,
+        value: "12 corazones",
+        giro: false,
+    },
+    {
+        id: 25,
+        value: "13 corazones",
+        giro: false,
+    },
+    {
+        id: 26,
+        value: "13 corazones",
+        giro: false,
+    },
+    {
+        id: 27,
+        value: "14 corazones",
+        giro: false,
+    },
+    {
+        id: 28,
+        value: "14 corazones",
+        giro: false,
+    },
+    {
+        id: 29,
+        value: "15 corazones",
+        giro: false,
+    },
+    {
+        id: 30,
+        value: "15 corazones",
+        giro: false,
+    },
+    {
+        id: 31,
+        value: "16 corazones",
+        giro: false,
+    },
+    {
+        id: 32,
+        value: "16 corazones",
+        giro: false,
+    }
+]
 const MemorizarJuego = () => {
     const [cartas, setCartas] = useState(mazo)
     const [primeraCarta, setPrimeraCarta] = useState(null)
@@ -51,8 +171,10 @@ const MemorizarJuego = () => {
     const [turno, setTurno] = useState(0)
     const [completo, setCompleto] = useState(false)
     const [nuevoJuego, setNuevoJuego] = useState(false)
+    const [nivelDificultad, setNivelDificultad] = useState(8)
     const revolverCartas = () => {
-        const cartasSin = [...cartas]
+        //let cartasSin = [...cartas]
+        let cartasSin = mazo.slice(0,nivelDificultad);
         for (let i = cartasSin.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [cartasSin[i], cartasSin[j]] = [cartasSin[j], cartasSin[i]];
@@ -91,9 +213,14 @@ const MemorizarJuego = () => {
         if(nuevoJuego){
             const cartasRevueltas = revolverCartas();
             setCartas(cartasRevueltas);
-            setNuevoJuego(false)
+            setNuevoJuego(false);
         }
     },[nuevoJuego])
+
+    useEffect(()=>{
+        const cartasRevueltas = revolverCartas();
+        setCartas(cartasRevueltas);
+    },[nivelDificultad])
 
     useEffect(()=>{
         if(segundaCarta){
@@ -132,8 +259,20 @@ const MemorizarJuego = () => {
         setDisabled(true)
     }
 
+    const handleDificultad = (evt) => {
+        setNivelDificultad(evt.target.value);
+    }
+
     return <div>
         <h1>Juego de Memoria</h1>
+        <div>
+            <label>Nivel Juego:</label>
+                <select id="optNivelDificultad" onChange={handleDificultad} defaultValue={8}>
+                <option value={8}>Facil (8 pairs)</option>
+                <option value={16}>Medio (16 pairs)</option>
+                <option value={32}>Dificil (32 pairs)</option>
+            </select>
+        </div>
         <h2>Turno: {turno}</h2>
         {completo && <div className="success-message">Felicitaciones has completado el juego en {turno} Turnos, quieres mejorar tu marca? <button onClick={reiniciarJuego}>Reiniciar</button></div>}
         <div style={{
