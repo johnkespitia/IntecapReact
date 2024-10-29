@@ -4,6 +4,7 @@ import "./index.css";
 import { Menu } from "./src/components/Menu";
 import { Slider } from "./src/components/Slider";
 import { Form } from "./src/components/Form";
+import { Memorizar } from "./src/components/Memorizar/Memorizar";
 
 // export const App = () => {
 // 	return (
@@ -19,8 +20,9 @@ import { Form } from "./src/components/Form";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Menu />
+    {/* <Menu name='Carlos Guampe'/>
     <Slider />
-    <Form />
+    <Form saludo='Bienvenido'/> */}
+    <Memorizar />
   </React.StrictMode>
 )
