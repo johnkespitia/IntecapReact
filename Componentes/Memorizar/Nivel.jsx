@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useContext } from "react"
+import JuegoContexto from "../../JuegoContexto"
 const NivelComponente = (props) => {
     return <div>
         <h3>Dificultad: <select onChange={props.handleDificultad}>

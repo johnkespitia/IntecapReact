@@ -1,18 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Menu from './Componentes/Menu'
+import MemorizarJuego from './Componentes/Memorizar'
+import JuegoContexto from './JuegoContexto'
 import HeroComponent from './Componentes/Hero'
-import ContactoFormulario from './Componentes/Contacto'
-import MenuImg from './Componentes/Menu/create'
 function App(){
-    return <div>
+    const [marcadores, setMarcadores] = useState([])
+    const addMarcador = (marcador) => {
+        setMarcadores([
+            ...marcadores,
+            marcador
+        ])
+    }
+    /*
+    {
+        turnos: 1,
+        dificultad: 4,
+        nick: '',
+    }
+    */
+    return <JuegoContexto.Provider value={{ marcadores, addMarcador }}>
         <Menu name="John Espitia" darkMode={false} className="red" style={{
             backgroundColor: "#CCC54D"
         }} />
+        <MemorizarJuego />
         <HeroComponent />
-        <MenuImg />
-        <ContactoFormulario saludo={{
-            saludo:"Bienvenido!",
-            nombre:"John Espitia"}}  />
-    </div>
+    </JuegoContexto.Provider>
 }
 export default App

@@ -1,6 +1,6 @@
 .flip{
-    width: 200px;
-    height: 300px;
+    width: 100px;
+    height: 150px;
     box-shadow: #000000a6 11px 9px 18px;
     border-radius: 5px;
     margin: 2rem;
@@ -15,7 +15,7 @@
     border: solid #857e20 2px;
     text-align: center;
     align-content: center;
-    font-size: xx-large;
+    font-size: 1rem;
     color: #1308e6;
     font-family: Arial, Helvetica, sans-serif;
 }   

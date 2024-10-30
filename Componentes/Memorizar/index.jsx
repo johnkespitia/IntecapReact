@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import TableroComponente from "./Tablero";
+import JuegoContexto from "../../JuegoContexto";
 
 const mazo = [
 	{ id: 1, value: "2 corazones", giro: false },
@@ -37,7 +38,7 @@ const mazo = [
 ];
 
 const MemorizarJuego = (props) => {
-
+    const { addMarcador } = useContext(JuegoContexto)
     const [cartas, setCartas] = useState(mazo)
     const [primeraCarta, setPrimeraCarta] = useState(null)
     const [segundaCarta, setSegundaCarta] = useState(null)
@@ -46,7 +47,6 @@ const MemorizarJuego = (props) => {
     const [completo, setCompleto] = useState(false)
     const [nuevoJuego, setNuevoJuego] = useState(false)
     const [dificultadJuego, setDificultadJuego] = useState(8)
-
     const revolverCartas = () => {
         let cartasSin = mazo.slice(0,dificultadJuego)
         for (let i = cartasSin.length - 1; i > 0; i--) {
@@ -64,7 +64,7 @@ const MemorizarJuego = (props) => {
 
     const reiniciarJuego = () => {
         resetCards()
-        const nuevoJuego= cartas.map((carta)=> { return {...carta, giro:false } })
+        const nuevoJuego= mazo
         setCartas(nuevoJuego)
         setTurno(0)
         setCompleto(false)
@@ -78,6 +78,11 @@ const MemorizarJuego = (props) => {
 
     useEffect(()=>{
         if(cartas && cartas.every((carta)=> carta.giro==true )){
+            addMarcador({
+                turnos: turno,
+                dificultad: dificultadJuego,
+                nickname: 'anonimo'
+            })
             setCompleto(true)
         }
     },[turno])
