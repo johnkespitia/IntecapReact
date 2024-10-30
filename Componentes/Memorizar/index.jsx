@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import './index.css'
+import TableroComponente from "./Tablero";
 
 const mazo = [
 	{ id: 1, value: "2 corazones", giro: false },
@@ -35,9 +35,9 @@ const mazo = [
 	{ id: 31, value: "4 diamantes", giro: false },
 	{ id: 32, value: "4 diamantes", giro: false },
 ];
-//arrow function
+
 const MemorizarJuego = (props) => {
-    //state  get ,  set 
+
     const [cartas, setCartas] = useState(mazo)
     const [primeraCarta, setPrimeraCarta] = useState(null)
     const [segundaCarta, setSegundaCarta] = useState(null)
@@ -137,31 +137,15 @@ const MemorizarJuego = (props) => {
     const handleDificultad = (evt) => {
         setDificultadJuego(evt.target.value)
     } 
-// obj != (null || undefined || false || [] || {} || "" || 0)
-    return <div>
-        <h1>Juego de Memoria</h1>
-        <h2>Turno: {turno}</h2>
-        <h3>Dificultad: <select onChange={handleDificultad}>
-            <option value={8}>facil (4 parejas)</option>
-            <option value={16}>medio (8 parejas)</option>
-            <option value={32}>dificil (16 parejas)</option>
-            </select></h3>
-        {completo && <div className="success-message">Felicitaciones has completado el juego en {turno} Turnos, quieres mejorar tu marca? <button onClick={reiniciarJuego}>Reiniciar</button></div>}
-        <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)"
-        }}>
-            {cartas && cartas.map((carta) => {
-                return <div key={carta.id}
-                    className="flip"
-                    onClick={()=> handleClick(carta)}
-                >
-                   {(carta.giro==true) && <div className="frente">{carta.value}</div>}
-                   {!carta.giro && <div className="tapa"></div>}
-                </div>
-            })}
-        </div>
-    </div> 
+
+    return <TableroComponente 
+        turno={turno}
+        cartas={cartas}
+        handleClick={handleClick}
+        handleDificultad={handleDificultad}
+        completo={completo}
+        reiniciarJuego={reiniciarJuego}
+    />
 }
 
 export default MemorizarJuego
