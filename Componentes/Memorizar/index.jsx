@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useEffect, useState, useContext } from "react";
 import TableroComponente from "./Tablero";
 import JuegoContexto from "../../JuegoContexto";
 
@@ -38,119 +38,124 @@ const mazo = [
 ];
 
 const MemorizarJuego = (props) => {
-    const { addMarcador } = useContext(JuegoContexto)
-    const [cartas, setCartas] = useState(mazo)
-    const [primeraCarta, setPrimeraCarta] = useState(null)
-    const [segundaCarta, setSegundaCarta] = useState(null)
-    const [disabled, setDisabled] = useState(false)
-    const [turno, setTurno] = useState(0)
-    const [completo, setCompleto] = useState(false)
-    const [nuevoJuego, setNuevoJuego] = useState(false)
-    const [dificultadJuego, setDificultadJuego] = useState(8)
-    const revolverCartas = () => {
-        let cartasSin = mazo.slice(0,dificultadJuego)
-        for (let i = cartasSin.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [cartasSin[i], cartasSin[j]] = [cartasSin[j], cartasSin[i]];
-        }
-        return cartasSin
-    }
+	const { addMarcador } = useContext(JuegoContexto);
+	const [cartas, setCartas] = useState(mazo);
+	const [primeraCarta, setPrimeraCarta] = useState(null);
+	const [segundaCarta, setSegundaCarta] = useState(null);
+	const [disabled, setDisabled] = useState(false);
+	const [turno, setTurno] = useState(0);
+	const [completo, setCompleto] = useState(false);
+	const [nuevoJuego, setNuevoJuego] = useState(false);
+	const [dificultadJuego, setDificultadJuego] = useState(8);
 
-    const resetCards = () => {
-        setDisabled(false)
-        setPrimeraCarta(null)
-        setSegundaCarta(null)
-    }
+	const revolverCartas = () => {
+		let cartasSin = mazo.slice(0, dificultadJuego).map((carta) => ({
+			...carta,
+			giro: false,
+		}));
+		for (let i = cartasSin.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[cartasSin[i], cartasSin[j]] = [cartasSin[j], cartasSin[i]];
+		}
+		return cartasSin;
+	};
 
-    const reiniciarJuego = () => {
+	const resetCards = () => {
+		setDisabled(false);
+		setPrimeraCarta(null);
+		setSegundaCarta(null);
+	};
+
+	const reiniciarJuego = () => {
+		resetCards();
+		const nuevoJuego = mazo;
+		setCartas(nuevoJuego);
+		setTurno(0);
+		setCompleto(false);
+		setNuevoJuego(true);
+	};
+	//component did mount
+	useEffect(() => {
+		const cartasRevueltas = revolverCartas();
+		setCartas(cartasRevueltas);
+	}, []);
+
+	useEffect(() => {
+		if (cartas && cartas.every((carta) => carta.giro == true)) {
+			addMarcador({
+				turnos: turno,
+				dificultad: dificultadJuego,
+				nickname: "anonimo",
+			});
+			setCompleto(true);
+		}
+	}, [turno]);
+
+	useEffect(() => {
+		if (nuevoJuego == true) {
+			const cartasRevueltas = revolverCartas();
+			setCartas(cartasRevueltas);
+			setNuevoJuego(false);
+		}
+	}, [nuevoJuego]);
+
+	useEffect(() => {
+		const cartasRevueltas = revolverCartas();
+		setCartas(cartasRevueltas);
         resetCards()
-        const nuevoJuego= mazo
-        setCartas(nuevoJuego)
-        setTurno(0)
-        setCompleto(false)
-        setNuevoJuego(true)
-    }
-//component did mount
-    useEffect(()=>{
-        const cartasRevueltas = revolverCartas();
-        setCartas(cartasRevueltas);
-    },[])
+	}, [dificultadJuego]);
 
-    useEffect(()=>{
-        if(cartas && cartas.every((carta)=> carta.giro==true )){
-            addMarcador({
-                turnos: turno,
-                dificultad: dificultadJuego,
-                nickname: 'anonimo'
-            })
-            setCompleto(true)
-        }
-    },[turno])
+	useEffect(() => {
+		if (segundaCarta != null) {
+			const pareja = primeraCarta.value == segundaCarta.value;
+			if (pareja == false || pareja != true || !pareja) {
+				setTimeout(() => {
+					setGiro(primeraCarta, false);
+					setGiro(segundaCarta, false);
+					resetCards();
+				}, 1000);
+			} else {
+				resetCards();
+			}
+			setTurno(turno + 1);
+		}
+	}, [segundaCarta]);
 
-    useEffect(()=>{
-        if(nuevoJuego == true){
-            const cartasRevueltas = revolverCartas();
-            setCartas(cartasRevueltas);
-            setNuevoJuego(false)
-        }
-    },[nuevoJuego])
+	const setGiro = (carta, giro) => {
+		let cartaGiro = cartas.findIndex((card) => card.id === carta.id);
+		let tempCartas = cartas;
+		tempCartas[cartaGiro].giro = giro;
+		setCartas(tempCartas);
+	};
 
-    useEffect(()=>{
+	const handleClick = (carta) => {
+		if (carta.giro || disabled) {
+			return;
+		}
+		if (!primeraCarta) {
+			setPrimeraCarta(carta);
+			setGiro(carta, true);
+			return;
+		}
+		setSegundaCarta(carta);
+		setGiro(carta, true);
+		setDisabled(true);
+	};
 
-        const cartasRevueltas = revolverCartas();
-        setCartas(cartasRevueltas);
+	const handleDificultad = (evt) => {
+		setDificultadJuego(+evt.target.value);
+	};
 
-    },[dificultadJuego])
+	return (
+		<TableroComponente
+			turno={turno}
+			cartas={cartas}
+			handleClick={handleClick}
+			handleDificultad={handleDificultad}
+			completo={completo}
+			reiniciarJuego={reiniciarJuego}
+		/>
+	);
+};
 
-    useEffect(()=>{
-        if(segundaCarta != null){
-            const pareja = primeraCarta.value == segundaCarta.value
-            if(pareja == false || pareja != true || !pareja){
-                setTimeout(()=>{
-                    setGiro(primeraCarta,false);
-                    setGiro(segundaCarta,false);
-                    resetCards()
-                }, 1000)
-            }else{
-                resetCards()
-            }
-            setTurno(turno+1)
-        }
-    },[segundaCarta])
-
-    const setGiro = (carta, giro) => {
-        let cartaGiro = cartas.findIndex((card)=> card.id === carta.id )
-        let tempCartas = cartas
-        tempCartas[cartaGiro].giro=giro
-        setCartas(tempCartas)
-    }
-
-    const handleClick = (carta) => {
-        if(carta.giro || disabled){
-            return
-        }
-        if(!primeraCarta){
-            setPrimeraCarta(carta)
-            setGiro(carta, true)
-            return
-        }
-        setSegundaCarta(carta)
-        setGiro(carta, true)
-        setDisabled(true)
-    }
-
-    const handleDificultad = (evt) => {
-        setDificultadJuego(evt.target.value)
-    } 
-
-    return <TableroComponente 
-        turno={turno}
-        cartas={cartas}
-        handleClick={handleClick}
-        handleDificultad={handleDificultad}
-        completo={completo}
-        reiniciarJuego={reiniciarJuego}
-    />
-}
-
-export default MemorizarJuego
+export default MemorizarJuego;
