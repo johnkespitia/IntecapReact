@@ -1,9 +1,10 @@
 import React from "react";
-import MarcadorComponente from "./Marcador";
 import NivelComponente from "./Nivel";
 import MensajeVictoriaComponente from "./MensajeVictoria";
 import CartaComponente from "./Carta";
 import "./index.css";
+import MarcadorComponente from "./Marcador";
+
 const TableroComponente = ({
 	turno,
 	handleDificultad,
