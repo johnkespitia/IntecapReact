@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Hello React</title>
-    <!-- <link href="./index.css" rel="stylesheet" /> -->
-  </head>
-  <body>
-    <div id="root">cargando....
-    </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas</title>
+</head>
+<body>
+    <div id="root"></div>
     <script type="module">
-      import React from 'react'
-      import ReactDOM from 'react-dom/client'
-      import App from './index.jsx'
-      //import {OtherApp} from './App.jsx'
-      ReactDOM.createRoot(document.getElementById('root')).render(
-        React.createElement(App)
-      )
+        import React from 'react'
+        import  ReactDOM  from 'react-dom/client'
+        import App from './index.jsx'
+
+        ReactDOM.createRoot(document.getElementById("root")).render(
+            React.createElement(App)
+        )
     </script>
-  </body>
+</body>
 </html>
