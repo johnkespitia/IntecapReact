@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import TableroComponente from "./Tablero";
 import JuegoContexto from "../../JuegoContexto";
+import { JugadorContexto } from "../../JugadorContexto";
 
 const mazo = [
 	{ id: 1, value: "2 corazones", giro: false },
@@ -39,6 +40,7 @@ const mazo = [
 
 const MemorizarJuego = (props) => {
 	const { addMarcador } = useContext(JuegoContexto);
+	const { jugador } = useContext(JugadorContexto)
 	const [cartas, setCartas] = useState(mazo);
 	const [primeraCarta, setPrimeraCarta] = useState(null);
 	const [segundaCarta, setSegundaCarta] = useState(null);
@@ -85,7 +87,7 @@ const MemorizarJuego = (props) => {
 			addMarcador({
 				turnos: turno,
 				dificultad: dificultadJuego,
-				nickname: "anonimo",
+				nickname: jugador.nombre,
 			});
 			setCompleto(true);
 		}
