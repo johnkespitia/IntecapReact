@@ -45,7 +45,7 @@ const Login = () => {
         handleReset,
         isSubmitting,
       })=>{
-        return <Form className="m-5" onSubmit={handleSubmit} >
+        return <Form className="m-4" onSubmit={handleSubmit} >
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" name="email" onChange={handleChange} defaultValue={values.email} />
