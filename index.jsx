@@ -4,7 +4,7 @@ import { StoreProviderComponent } from './store'
 import UsuarioComponent from './Componentes/Usuario'
 function App(){
     return <StoreProviderComponent>
-		<UsuarioComponent />
+		  <UsuarioComponent />
     </StoreProviderComponent>
 }
 export default App
