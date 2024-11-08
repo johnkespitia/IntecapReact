@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
 			<Container fluid>
 				<Row>
 					<Col
-						xs="10"
+						xs="12"
 						md="3"
 						lg="2"
 						className="p-0 m-0 "
