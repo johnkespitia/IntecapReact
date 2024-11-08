@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Nav, Offcanvas } from "react-bootstrap";
+import { Button, Nav } from "react-bootstrap";
 
 const SideBarComponent = () => {
 	const [showMenu, setShowMenu] = useState(true);
@@ -15,10 +15,10 @@ const SideBarComponent = () => {
 			{showMenu?"Cerrar":"Abrir"} Menu
 		</Button>
 		<Nav defaultActiveKey="/home" className={`flex-column bg-dark ${showMenu?"":"d-none"} d-md-block min-vh-100`}>
-					<Nav.Link className="d-flex justify-content-between">		
+					<Nav.Link href="/" className="d-flex justify-content-between">		
 							<h3 className="ms-3">Logo</h3>
 					</Nav.Link>
-					<Nav.Link href="/home">
+					<Nav.Link href="/match">
 						<i className="bi bi-bookmark-heart-fill"></i>
 						<span className="ms-1"> Match</span>
 					</Nav.Link>

@@ -1,7 +1,7 @@
 import React from "react"
 import { Button, Card } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { usuarioLogout } from "../../../store"
+import { usuarioLogout } from "../../store"
 const HomeComponent = () => {
   const dispatch = useDispatch()
   /*

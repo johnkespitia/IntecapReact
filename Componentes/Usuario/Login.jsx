@@ -3,7 +3,8 @@ import { Button, Form } from "react-bootstrap";
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch } from "react-redux";
-import { usuarioLogin } from "../../../store";
+import { usuarioLogin } from "../../store";
+
 
 const Login = () => {
     const dispatch = useDispatch()

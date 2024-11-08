@@ -1,13 +1,14 @@
 import React from 'react'
 import './themes/bootstrap.min.css'
 import { StoreProviderComponent } from './store'
-import UsuarioComponent from './Componentes/Usuario'
 import Layout from './Componentes/Layout'
+import AppRouterProvider from './Rutas'
+
 function App(){
     return <StoreProviderComponent>
 		  <Layout>
-            <UsuarioComponent />
-          </Layout>
+        <AppRouterProvider />
+      </Layout>
     </StoreProviderComponent>
 }
 export default App
