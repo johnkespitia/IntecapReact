@@ -4,14 +4,16 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch } from "react-redux";
 import { usuarioLogin } from "../../store";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
     const dispatch = useDispatch()
-    
+    const navigate = useNavigate()
     const handleSubmit = (values, { setSubmitting}) => {
       setSubmitting(true)
       dispatch(usuarioLogin(values))
+      navigate("/")
       setSubmitting(false)
       
     }
