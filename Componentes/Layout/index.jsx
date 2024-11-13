@@ -3,8 +3,9 @@ import SideBarComponent from "./SideBarComponent";
 import { Col, Container, Row } from "react-bootstrap";
 import NavbarComponent from "./NavbarComponent";
 import { Button } from "react-bootstrap";
+import { Outlet } from "react-router-dom";
 
-const Layout = ({ children }) => {
+const Layout = () => {
 	return (
 		<>
 			<Container fluid>
@@ -20,7 +21,7 @@ const Layout = ({ children }) => {
 					</Col>
 					<Col className="p-0 m-0" xs="12" md="9" lg="10">
 						<NavbarComponent />
-						{children}
+						<Outlet />
 					</Col>
 				</Row>
 			</Container>

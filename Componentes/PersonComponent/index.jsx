@@ -1,12 +1,24 @@
 import React from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 const PersonComponent = () => {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const { id } = useParams()
-    console.log(searchParams)
-    return <h1>Persona: {id}</h1>
+    const location = useLocation()
+    console.log(location)
+    const navigator = useNavigate()
+    const redireccionar = () =>{
+        navigator("/match")
+    }
+    const atras = () =>{
+        navigator("../..",{ relative:"path" })
+    }
+    return <h1>Persona: {id}<br/>
+    <a onClick={redireccionar}>Rematch</a>
+    <br/>
+    <a onClick={atras}>Regresar</a>
+    </h1>
 }
 
 export default PersonComponent

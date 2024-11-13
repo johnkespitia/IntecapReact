@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const SideBarComponent = () => {
 	const [showMenu, setShowMenu] = useState(true);
@@ -15,12 +16,16 @@ const SideBarComponent = () => {
 			{showMenu?"Cerrar":"Abrir"} Menu
 		</Button>
 		<Nav defaultActiveKey="/home" className={`flex-column bg-dark ${showMenu?"":"d-none"} d-md-block min-vh-100`}>
-					<Nav.Link href="/" className="d-flex justify-content-between">		
+					<Nav.Link as={Link} to={'/'} className="d-flex justify-content-between">		
 							<h3 className="ms-3">Logo</h3>
 					</Nav.Link>
-					<Nav.Link href="/match">
+					<Nav.Link as={Link} to={'/match'}>
 						<i className="bi bi-bookmark-heart-fill"></i>
-						<span className="ms-1"> Match</span>
+						<span className="ms-1"> Match (Link)</span>
+					</Nav.Link>
+					<Nav.Link href={'/match'}>
+						<i className="bi bi-bookmark-heart-fill"></i>
+						<span className="ms-1"> Match (a)</span>
 					</Nav.Link>
 					<Nav.Link eventKey="link-1">
 						<i className="bi bi-safe2-fill"></i>
