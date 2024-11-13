@@ -8,9 +8,7 @@ import { usuarioLogin } from "../../store";
 
 const Login = () => {
     const dispatch = useDispatch()
-    const handleChange = (evt) => {
-
-    }
+    
     const handleSubmit = (values, { setSubmitting}) => {
       setSubmitting(true)
       dispatch(usuarioLogin(values))
@@ -27,7 +25,6 @@ const Login = () => {
     return <Formik 
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      onChange={handleChange}
       // validate={function(values, props) {
       //   const errors = {};
       //   if(values.email.length < 20){

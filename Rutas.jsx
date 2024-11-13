@@ -3,6 +3,7 @@ import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom"
 import HomeComponent from "./Paginas/Home";
 import MatchComponent from "./Paginas/Match";
 import Login from "./Paginas/Login";
+import PersonComponent from "./Componentes/PersonComponent";
 
 const rutas = createBrowserRouter([
     {
@@ -12,6 +13,10 @@ const rutas = createBrowserRouter([
     {
       path:"/match",
       element: <MatchComponent />
+    },
+    {
+      path:"/match/:id",
+      element: <PersonComponent />
     },
     {
         path:"/login",
