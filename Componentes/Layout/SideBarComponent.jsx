@@ -12,7 +12,7 @@ const SideBarComponent = () => {
 
 	return (
 	<React.Fragment>
-		<Button eventKey="close" variant="dark" onClick={handleMenu} className=" text-left w-100 d-block d-md-none ">
+		<Button  variant="dark" onClick={handleMenu} className=" text-left w-100 d-block d-md-none ">
 			{showMenu?"Cerrar":"Abrir"} Menu
 		</Button>
 		<Nav defaultActiveKey="/home" className={`flex-column bg-dark ${showMenu?"":"d-none"} d-md-block min-vh-100`}>
@@ -23,19 +23,15 @@ const SideBarComponent = () => {
 						<i className="bi bi-bookmark-heart-fill"></i>
 						<span className="ms-1"> Match (Link)</span>
 					</Nav.Link>
-					<Nav.Link href={'/match'}>
+					<Nav.Link as={Link} to={'/login'}>
 						<i className="bi bi-bookmark-heart-fill"></i>
-						<span className="ms-1"> Match (a)</span>
+						<span className="ms-1"> login (Link)</span>
 					</Nav.Link>
-					<Nav.Link eventKey="link-1">
+					<Nav.Link as={Link}  to={'/story'}>
 						<i className="bi bi-safe2-fill"></i>
-						<span className="ms-1"> Encontrar</span>
+						<span className="ms-1"> Historial de Matchs</span>
 					</Nav.Link>
-					<Nav.Link eventKey="link-2">
-						<i className="bi bi-postage-heart-fill"></i>
-						<span className="ms-1"> Favoritos</span>
-					</Nav.Link>
-					<Nav.Link eventKey="logout">
+					<Nav.Link as={Link} >
 						<i className="bi bi-box-arrow-in-left"></i>
 						<span className=""> Salir</span>
 					</Nav.Link>

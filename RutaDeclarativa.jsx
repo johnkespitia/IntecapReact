@@ -6,6 +6,8 @@ import Login from "./Paginas/Login";
 import PersonComponent from "./Componentes/PersonComponent";
 import Layout from "./Componentes/Layout";
 import { useSelector } from "react-redux";
+import NotFound from "./Paginas/NotFound";
+import StoryComponent from "./Paginas/Story";
 
 const RutaDeclarativaProvider = () => {
     return  <BrowserRouter>
@@ -18,9 +20,13 @@ const RutaDeclarativaProvider = () => {
               <Route index element={<MatchComponent/>}/>
               <Route path=":id" element={<PersonComponent/>} />
             </Route>
+            <Route path="story" element={<StoryComponent pageSize={2}/>} />
           </Route>
           {/* ruta publica */}
-          <Route path="login" element={<Login />} />
+          <Route element={<PublicRoutes />}>
+            <Route path="login" element={<Login />} />
+          </Route>
+          <Route path="*" element={<NotFound/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
@@ -28,12 +34,21 @@ const RutaDeclarativaProvider = () => {
 
 const PrivateRoutes = ( { children, ...rest }) => {
   const usuario = useSelector(state => state.usuarioReducer.usuario)
-  console.log(usuario)
   const isAuth = Object.keys(usuario).length > 0
   if(isAuth){
     return <Outlet {...rest} />
   }else{
     return <Navigate to={"/login"} replace />
+  }
+}
+
+const PublicRoutes = ( { children, ...rest }) => {
+  const usuario = useSelector(state => state.usuarioReducer.usuario)
+  const isAuth = Object.keys(usuario).length > 0
+  if(!isAuth){
+    return <Outlet {...rest} />
+  }else{
+    return <Navigate to={"/"} replace />
   }
 }
 
