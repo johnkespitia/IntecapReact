@@ -9,7 +9,10 @@ const HomeComponent = () => {
     return state.usuarioReducer.usuario
   }
   */
-  const handleLogout = () => dispatch(usuarioLogout())
+  const handleLogout = () => {
+    localStorage.clear()
+    dispatch(usuarioLogout())
+  }
   const usuario = useSelector(state => state.usuarioReducer.usuario)
     return <Card style={{ width: '18rem' }}>
     <Card.Body>
