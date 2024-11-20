@@ -1,11 +1,15 @@
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import PersonaCard from "./PersonaCard";
-import { addAceptado, addPersona, addRechazado, getUltimoMatch } from "../../store";
+import { addAceptado, addPersona, addRechazado, getUltimoMatch, addPersonaAsync } from "../../store";
 const MatchComponent = (props) => {
-    const [persona, setPersona] = useState(null)
+    // const [persona, setPersona] = useState(null)
+    const personas = useSelector((state)=>state.personasReducer.personas)
+    const loading = useSelector((state)=>state.personasReducer.personaLoading)
+    const persona = personas[personas.length-1].results[0]
+    console.log(persona)
     const [searchParams, setSearchParams] = useSearchParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -24,20 +28,13 @@ const MatchComponent = (props) => {
         dispatch(getUltimoMatch(persona))
     }
 
-    const obtenerPersona = useCallback(async() => {
-        let url = 'https://randomuser.me/api'
-        if(genero){
-            url ='https://randomuser.me/api?gender='+genero 
-        }
-        const response = await fetch(url)
-        const data =  await response.json()
-        setPersona(data.results[0])
-        dispatch(addPersona(data.results[0]))
-    },[genero])
+    const obtenerPersona = () => {
+        dispatch(addPersonaAsync(genero))
+    }
 
     useEffect(()=>{
         obtenerPersona()
-    },[obtenerPersona])
+    },[])
 
     return <>
     <div className="d-flex flex-column justify-content-center align-items-center">
@@ -47,7 +44,8 @@ const MatchComponent = (props) => {
         <Button onClick={()=>{ navigate('/match?genero=female') }}>Mujer</Button>
         <Button onClick={()=>{ obtenerPersona()} }>cambiar Persona</Button>
     </div>
-    {persona && <PersonaCard persona={persona} match={match} dismatch={dismatch} ultimoMatch={ultimoMatch}/>}
+    {loading && <Spinner />}
+    {!loading && persona && <PersonaCard persona={persona} match={match} dismatch={dismatch} ultimoMatch={ultimoMatch}/>}
     </div>
     </>
 }

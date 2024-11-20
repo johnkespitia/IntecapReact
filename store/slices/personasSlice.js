@@ -1,11 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const personasSlice = createSlice({
     name:"personas",
     initialState:{
         personas: [],
         aceptados:[],
-        rechazados:[]
+        rechazados:[],
+        ultimoMatch: null,
+        personaLoading: false,
     },
     reducers: {
         addPersona: (state, { payload }) => {
@@ -22,7 +25,7 @@ const personasSlice = createSlice({
         },
 
         getUltimoMatch: (state) => {
-            state.personas[state.personas.length - 1]
+            state.ultimoMatch = state.personas[state.personas.length - 1]
           },
 
         removeAceptado: (state, {payload}) => {
@@ -32,10 +35,27 @@ const personasSlice = createSlice({
             // state.rechazados.push(payload)
         }
         
+    },
+    extraReducers: (builder) => {
+        builder.addCase(addPersonaAsync.pending, (state)=>{
+            state.personaLoading = true
+        });
+        builder.addCase(addPersonaAsync.fulfilled, (state, action)=>{
+            state.personas.push(action.payload)
+            state.personaLoading = false
+        });
     }
 })
 
-
+export const addPersonaAsync = createAsyncThunk(
+    'personas/addPersona',
+    async (genero) => {
+        let url = `https://randomuser.me/api?gender=${genero}`
+        const response = await fetch(url)
+        const data =  await response.json()
+       return data;
+    }
+)
 
 
 export { personasSlice }

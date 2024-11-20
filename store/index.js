@@ -7,7 +7,8 @@ import {
     addRechazado,
     getUltimoMatch,
     removeAceptado,
-    removeRechazado
+    removeRechazado,
+    addPersonaAsync
 } from './slices/personasSlice'
 export {
     Store,
@@ -19,5 +20,6 @@ export {
     addRechazado,
     getUltimoMatch,
     removeAceptado,
-    removeRechazado
+    removeRechazado,
+    addPersonaAsync
 }
