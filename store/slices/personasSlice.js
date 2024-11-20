@@ -20,21 +20,31 @@ const personasSlice = createSlice({
         addRechazado: (state, {payload}) => {
             state.rechazados.push(payload)
         },
+
+        getUltimoMatch: (state) => {
+            state.personas[state.personas.length - 1]
+          },
+
         removeAceptado: (state, {payload}) => {
             //state.aceptados.push(payload)
         },
         removeRechazado: (state, {payload}) => {
             // state.rechazados.push(payload)
         }
+        
     }
 })
+
+
+
 
 export { personasSlice }
 export const { 
     addPersona, 
     addAceptado, 
-    addRechazado, 
+    addRechazado,
+    getUltimoMatch, 
     removeAceptado, 
-    removeRechazado 
+    removeRechazado
 } = personasSlice.actions
 export default personasSlice.reducer
