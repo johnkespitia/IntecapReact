@@ -8,6 +8,7 @@ import Layout from "./Componentes/Layout";
 import { useSelector } from "react-redux";
 import NotFound from "./Paginas/NotFound";
 import StoryComponent from "./Paginas/Story";
+import MatchMasivoComponent from "./Paginas/MatchMasivo";
 
 const RutaDeclarativaProvider = () => {
     return  <BrowserRouter>
@@ -20,6 +21,7 @@ const RutaDeclarativaProvider = () => {
               <Route index element={<MatchComponent/>}/>
               <Route path=":id" element={<PersonComponent/>} />
             </Route>
+            <Route path="match-masivo" element={<MatchMasivoComponent/>} />
             <Route path="story" element={<StoryComponent pageSize={2}/>} />
           </Route>
           {/* ruta publica */}

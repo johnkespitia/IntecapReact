@@ -18,7 +18,7 @@ const NavbarComponent = () => {
 						<Navbar.Brand as={Link} to={'/'}>Navbar scroll</Navbar.Brand>
 						<Nav className=" d-flex flex-row " navbarScroll>
 							<Nav.Link as={Link} to={'/'} className="mr-3" href="#action1">Home</Nav.Link>
-							<Nav.Link className="mr-3" href="#action2">Link</Nav.Link>
+							<Nav.Link as={Link} className="mr-3" to="/match-masivo">Match Masivo</Nav.Link>
 							<NavDropdown className="mr-3" title="Link" id="navbarScrollingDropdown">
 								<NavDropdown.Item href="#action3">
 									Action
