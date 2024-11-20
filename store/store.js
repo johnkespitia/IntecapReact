@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { thunk } from 'redux-thunk'
 import usuarioReducer from './slices/usuarioSlice'
 import personasReducer from './slices/personasSlice'
 
@@ -17,6 +18,6 @@ export default configureStore({
     personasReducer: personasReducer,
   },
   preloadedState: estadoPersistido,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localStoreMiddleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localStoreMiddleware).concat(thunk),
 
 })
