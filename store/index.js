@@ -5,6 +5,7 @@ import {
     addAceptado,
     addPersona,
     addRechazado,
+    getUltimoMatch,
     removeAceptado,
     removeRechazado
 } from './slices/personasSlice'
@@ -16,6 +17,7 @@ export {
     addAceptado,
     addPersona,
     addRechazado,
+    getUltimoMatch,
     removeAceptado,
     removeRechazado
 }

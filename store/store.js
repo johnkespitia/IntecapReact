@@ -9,12 +9,12 @@ const localStoreMiddleware = ({getState}) => next => action => {
 }
 
 const informacionPersistida = localStorage.getItem('state')
-const estadoPersistido = JSON.parse(informacionPersistida)
+const estadoPersistido = informacionPersistida ? JSON.parse(informacionPersistida) : {}
 
 export default configureStore({
   reducer: {
-    usuarioReducer: usuarioReducer,
-    personasReducer: personasReducer,
+    usuarioReducer,
+    personasReducer,
   },
   preloadedState: estadoPersistido,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localStoreMiddleware),

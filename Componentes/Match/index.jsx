@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import PersonaCard from "./PersonaCard";
-import { addAceptado, addPersona, addRechazado } from "../../store";
+import { addAceptado, addPersona, addRechazado, getUltimoMatch } from "../../store";
 const MatchComponent = (props) => {
     const [persona, setPersona] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
@@ -18,6 +18,10 @@ const MatchComponent = (props) => {
     const dismatch = () => {
         dispatch(addRechazado(persona))
         obtenerPersona()
+    }
+
+    const ultimoMatch = () => {
+        dispatch(getUltimoMatch(persona))
     }
 
     const obtenerPersona = useCallback(async() => {
@@ -36,11 +40,15 @@ const MatchComponent = (props) => {
     },[obtenerPersona])
 
     return <>
+    <div className="d-flex flex-column justify-content-center align-items-center">
     <h1>Encuentra tu media naranja </h1>
-    <Button onClick={()=>{ navigate('/match?genero=male') }}>Hombre</Button>
-    <Button onClick={()=>{ navigate('/match?genero=female') }}>Mujer</Button>
-    <Button onClick={()=>{ obtenerPersona()} }>cambiar Persona</Button>
-    {persona && <PersonaCard persona={persona} match={match} dismatch={dismatch} />}
+    <div className=" d-flex gap-2 m-4">
+        <Button onClick={()=>{ navigate('/match?genero=male') }}>Hombre</Button>
+        <Button onClick={()=>{ navigate('/match?genero=female') }}>Mujer</Button>
+        <Button onClick={()=>{ obtenerPersona()} }>cambiar Persona</Button>
+    </div>
+    {persona && <PersonaCard persona={persona} match={match} dismatch={dismatch} ultimoMatch={ultimoMatch}/>}
+    </div>
     </>
 }
 export default MatchComponent

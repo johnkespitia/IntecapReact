@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap'
-const PersonaCard = ({persona, match, dismatch}) => {
+const PersonaCard = ({persona, match, dismatch, ultimoMatch}) => {
     return <Card style={{ width: '18rem' }}>
     <Card.Img variant="top" src={persona.picture.large} />
     <Card.Body>
@@ -9,9 +9,10 @@ const PersonaCard = ({persona, match, dismatch}) => {
         email: {persona.email}
       </Card.Text>
     </Card.Body>
-    <Card.Footer>
-        <Button variant="success" size="lg" onClick={match}><i class="bi bi-check-circle-fill"></i></Button>
-        <Button variant="danger" size="lg" onClick={dismatch}><i class="bi bi-x-circle-fill"></i></Button>
+    <Card.Footer className='d-flex justify-content-between'>
+        <Button variant="success" size="lg" onClick={match}><i class="bi bi-heart-fill"></i></Button>
+        <Button variant="info" size="lg" onClick={ultimoMatch}><i class="bi bi-arrow-counterclockwise"></i></Button>
+        <Button variant="danger" size="lg" onClick={dismatch}><i className="bi bi-x-circle-fill"></i></Button>
     </Card.Footer>
   </Card>
 }
