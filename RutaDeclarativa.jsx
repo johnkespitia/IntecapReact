@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import NotFound from "./Paginas/NotFound";
 import StoryComponent from "./Paginas/Story";
 import MatchMasivoComponent from "./Paginas/MatchMasivo";
+import Registro from "./Paginas/Registro";
 
 const RutaDeclarativaProvider = () => {
     return  <BrowserRouter>
@@ -27,6 +28,7 @@ const RutaDeclarativaProvider = () => {
           {/* ruta publica */}
           <Route element={<PublicRoutes />}>
             <Route path="login" element={<Login />} />
+            <Route path="registro" element={<Registro />} />
           </Route>
           <Route path="*" element={<NotFound/>}/>
         </Route>

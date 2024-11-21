@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch } from "react-redux";
 import { usuarioLogin } from "../../store";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -64,8 +64,10 @@ const Login = () => {
         <Button variant="primary" type="submit" disabled={isSubmitting}>
           Ingresar
         </Button>
+        {" "}<Link to={"/registro"}>No tienes cuenta? registrate</Link>
       </Form>
       }}
+      
   </Formik>
 }
 
