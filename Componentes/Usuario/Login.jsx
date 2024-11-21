@@ -1,22 +1,36 @@
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch } from "react-redux";
 import { usuarioLogin } from "../../store";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const handleSubmit = (values, { setSubmitting}) => {
+    const handleSubmit = async (values, { setSubmitting}) => {
       setSubmitting(true)
-      dispatch(usuarioLogin(values))
-      navigate("/")
+      const result = await loginApi(values)
+      if(result){
+        dispatch(usuarioLogin(result))
+        navigate("/")
+      }
       setSubmitting(false)
-      
     }
+
+    const loginApi = useCallback(async (values)=>{
+      const response = await axios.post("https://apitest.plgeducation.com/public/api/login",values)
+      const userData = await axios.get('https://apitest.plgeducation.com/public/api/my-account', { headers:{
+        "Authorization": `Bearer ${response.data.token}`
+      }
+      })
+      console.log(userData.data)
+      return userData.data
+    }, [])
+
     const initialValues = {
       email: "demo@correo.com"
     }
